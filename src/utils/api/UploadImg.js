@@ -1,17 +1,21 @@
 import React, { useState } from "react";
-import "../styles/HomeImageGallery.css";
-import { useForm } from "react-hook-form";
+import "../../styles/HomeImageGallery.css";
 
 const UploadImg = () => {
   const [imageFiles, setImageFiles] = useState([]);
-  const {  handleSubmit } = useForm();
+
 
   //*************get image url****************
   const handleImageChange = (event) => {
     const files = event.target.files;
     setImageFiles(files);
   };
-
+  // Handle the drop event
+  const handleImageDrop = (event) => {
+    event.preventDefault();
+    const files = event.dataTransfer.files;
+    setImageFiles(files);
+  };
   const onSubmit = async (data) => {
     const imageUrls = await Promise.all(
       Array.from(imageFiles).map(async (file) => {
@@ -53,20 +57,44 @@ const UploadImg = () => {
   };
 
   return (
-    <form  onSubmit={handleSubmit(onSubmit)}>
+//     <form  onSubmit={handleSubmit(onSubmit)}>
+//     {/* ----------Product Image---------- */}
+//     <div className="mb-3">
+//       <label>Product Image</label>
+//       <input
+//         type="file"
+//         name="images"
+//         multiple
+//         onChange={handleImageChange}
+//       />
+//     </div>
+//      {/* -----------*********button********------------ */}
+//      <input className='signup-btn ms-0 mb-1 mt-2' type="submit" value="Add Problems" />
+//   </form>
+
+    <>
+      <div
+      onDrop={handleImageDrop}
+      onDragOver={(event) => event.preventDefault()}
+      className="drop-zone"
+    >
       {/* ----------Product Image---------- */}
-      <div className="mb-3">
-        <label>Product Image</label>
+      <form className="mb-3">
+        {/* Include the file input */}
         <input
           type="file"
           name="images"
           multiple
           onChange={handleImageChange}
         />
-      </div>
-       {/* -----------*********button********------------ */}
-       <input className='signup-btn ms-0 mb-1 mt-2' type="submit" value="Add Problems" />
-    </form>
+      </form>
+
+      
+      
+      {/* Add a button to submit the images */}
+      <button onClick={onSubmit}>Upload Images</button>
+    </div>
+    </>
   );
 };
 
