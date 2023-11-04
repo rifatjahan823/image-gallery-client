@@ -76,10 +76,10 @@ const HomeImageGallery = () => {
   };
 
   return (
-   <div>
+   <div className="gallery-section">
      <div className="gallery-title">
       {
-      selectedImageIds.length>0 && <h3>{selectedImageIds.length} File Selected</h3>
+      selectedImageIds.length>0 && <h3>  <input type="checkbox" checked  style={{ width: '16px', height: '16px'}}/> {selectedImageIds.length} File Selected</h3>
       }
            {
       selectedImageIds.length>0?
