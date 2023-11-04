@@ -9,7 +9,7 @@ const HomeImageGallery = () => {
   
 
   useEffect(() => {
-    fetch("http://localhost:5000/image")
+    fetch("https://image-gallery-rou0.onrender.com/image")
       .then((res) => res.json())
       .then((data) => setImages(data.data));
   }, []);
@@ -17,7 +17,7 @@ const HomeImageGallery = () => {
  // Send a DELETE request to your API to delete the selected images using the selectedImageIds array.
   const handleDeleteSelectedImages = () => {
     const selectedImageIdsArray = selectedImageIds.map((id) => ({ id }));
-    fetch('http://localhost:5000/delete-selected-images', {
+    fetch('https://image-gallery-rou0.onrender.com/delete-selected-images', {
       method: 'DELETE',
       body: JSON.stringify({ selectedImageIds: selectedImageIdsArray }),
       headers: {
@@ -26,7 +26,7 @@ const HomeImageGallery = () => {
     })
       .then((response) => {
         if (response.ok) {
-          fetch("http://localhost:5000/image")
+          fetch("https://image-gallery-rou0.onrender.com/image")
           .then((res) => res.json())
           .then((data) => setImages(data.data));
         } else {

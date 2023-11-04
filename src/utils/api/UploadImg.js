@@ -44,7 +44,7 @@ const UploadImg = () => {
     };
 
     //send to your database
-    fetch("http://localhost:5000/image", {
+    fetch("https://image-gallery-rou0.onrender.com/image", {
       method: "POST",
       headers: {
         "content-type": "application/json",
