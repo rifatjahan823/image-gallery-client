@@ -2,16 +2,25 @@ import React, { useEffect, useState } from "react";
 import GetImg from "../utils/api/GetImg";
 import "../styles/HomeImageGallery.css";
 import UploadImg from "../utils/api/UploadImg";
+import Loading from "../shared/Loading";
 
 const HomeImageGallery = () => {
   const [images, setImages] = useState([]);
   const [selectedImageIds, setSelectedImageIds] = useState([]);
-  
+  const [spiner,setSpiner]=useState(false);
 
   useEffect(() => {
+    setSpiner(true);
     fetch("https://image-gallery-rou0.onrender.com/image")
       .then((res) => res.json())
-      .then((data) => setImages(data.data));
+      .then((data) => {
+        setImages(data.data);
+        setSpiner(false); 
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+        setSpiner(false); 
+      });
   }, []);
 
  // Send a DELETE request to your API to delete the selected images using the selectedImageIds array.
@@ -80,7 +89,11 @@ const HomeImageGallery = () => {
      </div>
 
      <div className="grid-wrapper">
-      {images?.map((img, index) => (
+      {
+           spiner ? (
+            <Loading></Loading>
+            ):
+      images?.map((img, index) => (
         <div
           key={index}
           draggable="true"

@@ -8,10 +8,16 @@ const UploadImg = () => {
     return imageFiles.length > 0;
   };
 
-  //*************get image url****************
+  const [selectedImages, setSelectedImages] = useState([]); // State to store selected image previews
+
+  // *************get image url****************
   const handleImageChange = (event) => {
     const files = event.target.files;
     setImageFiles(files);
+
+    // Create an array of image previews from the selected files
+    const imagePreviews = Array.from(files).map((file) => URL.createObjectURL(file));
+    setSelectedImages(imagePreviews);
   };
 
   // Handle the drop event
@@ -19,7 +25,12 @@ const UploadImg = () => {
     event.preventDefault();
     const files = event.dataTransfer.files;
     setImageFiles(files);
+
+    // Create an array of image previews from the dropped files
+    const imagePreviews = Array.from(files).map((file) => URL.createObjectURL(file));
+    setSelectedImages(imagePreviews);
   };
+
   const onSubmit = async (data) => {
     const imageUrls = await Promise.all(
       Array.from(imageFiles).map(async (file) => {
@@ -36,7 +47,8 @@ const UploadImg = () => {
         );
         const data = await response.json();
         return data.secure_url;
-      })
+      }),
+
     );
     const image = {
       picture: imageUrls,
@@ -56,6 +68,8 @@ const UploadImg = () => {
         if (output.insertedId) {
         }
       });
+      setImageFiles([]);
+      setSelectedImages([]);
   };
 
   return (
@@ -69,11 +83,20 @@ const UploadImg = () => {
         {/* ----------Product Image---------- */}
         <form className="mb-3">
           <label class="custom-file-upload">
-            <input type="file" style={{display:"none",}} onChange={handleImageChange} />
-            <BsImage style={{cursor:"pointer"}}/>
+            <input type="file" multiple style={{ display: "none", }} onChange={handleImageChange} />
+            <BsImage style={{ cursor: "pointer" }} />
           </label>
+
         </form>
         <button className="img-btn" onClick={onSubmit} disabled={!areImagesSelected()} >Add Images</button>
+        {/* Render the selected image previews in a container */}
+        {selectedImages.length > 0 && (
+          <div className="selected-images-container">
+            {selectedImages.map((imageUrl, index) => (
+              <img key={index} src={imageUrl} alt={`Selected Image ${index}`} className="selected-image" />
+            ))}
+          </div>
+        )}
       </div>
     </>
   );
