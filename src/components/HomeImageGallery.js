@@ -6,20 +6,17 @@ import UploadImg from "../utils/api/UploadImg";
 const HomeImageGallery = () => {
   const [images, setImages] = useState([]);
   const [selectedImageIds, setSelectedImageIds] = useState([]);
+  
 
-  const handleImageSelection = (imageId) => {
-    if (selectedImageIds.includes(imageId)) {
-      setSelectedImageIds(selectedImageIds.filter((id) => id !== imageId));
-    } else {
-      setSelectedImageIds([...selectedImageIds, imageId]);
-    }
-  };
+  useEffect(() => {
+    fetch("http://localhost:5000/image")
+      .then((res) => res.json())
+      .then((data) => setImages(data.data));
+  }, []);
 
+ // Send a DELETE request to your API to delete the selected images using the selectedImageIds array.
   const handleDeleteSelectedImages = () => {
-    // Create an array of selected image IDs
     const selectedImageIdsArray = selectedImageIds.map((id) => ({ id }));
-
-    // Send a DELETE request to your API to delete the selected images using the selectedImageIds array.
     fetch('http://localhost:5000/delete-selected-images', {
       method: 'DELETE',
       body: JSON.stringify({ selectedImageIds: selectedImageIdsArray }),
@@ -29,8 +26,9 @@ const HomeImageGallery = () => {
     })
       .then((response) => {
         if (response.ok) {
-          // Handle the success case, and then update the images state to reflect the changes.
-          // For example, fetch the updated image data and set it using setImages.
+          fetch("http://localhost:5000/image")
+          .then((res) => res.json())
+          .then((data) => setImages(data.data));
         } else {
           console.error('Failed to delete selected images.');
         }
@@ -40,12 +38,14 @@ const HomeImageGallery = () => {
       });
   };
 
-
-  useEffect(() => {
-    fetch("http://localhost:5000/image")
-      .then((res) => res.json())
-      .then((data) => setImages(data.data));
-  }, []);
+  const handleImageSelection = (imageId) => {
+    if (selectedImageIds.includes(imageId)) {
+      setSelectedImageIds(selectedImageIds.filter((id) => id !== imageId));
+    } else {
+      setSelectedImageIds([...selectedImageIds, imageId]);
+    }
+  };
+ 
 
   const onDragStart = (event, index) => {
     event.dataTransfer.setData("text/plain", index);
@@ -68,9 +68,19 @@ const HomeImageGallery = () => {
 
   return (
    <div>
-      <button onClick={handleDeleteSelectedImages}>Delete Selected</button>
+     <div className="gallery-title">
+      {
+      selectedImageIds.length>0 && <h3>{selectedImageIds.length} File Selected</h3>
+      }
+           {
+      selectedImageIds.length>0?
+      <a onClick={handleDeleteSelectedImages}>Delete files</a>:
+      <h1>Gallery</h1>
+     }
+     </div>
+
      <div className="grid-wrapper">
-      {images.map((img, index) => (
+      {images?.map((img, index) => (
         <div
           key={index}
           draggable="true"

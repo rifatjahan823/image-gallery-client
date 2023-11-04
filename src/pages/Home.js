@@ -1,11 +1,11 @@
 import React from 'react';
 import HomeImageGallery from '../components/HomeImageGallery';
+import '../styles/common.css'
 
 const Home = () => {
     return (
-        <div>
+        <div className='container'>
             <HomeImageGallery/>
-        
         </div>
     );
 };

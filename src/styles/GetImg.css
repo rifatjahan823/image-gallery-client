@@ -1,0 +1,40 @@
+.checkbox {
+    display: none;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+    z-index: 9999;
+  }
+    .hovered .checkbox {
+    display: block;
+    cursor: pointer;
+    content: ' ';
+    position: absolute;
+    background-color: rgba(163, 163, 163, 0.356); 
+    top: 0;
+    left: 0;
+    right: 0px;
+    bottom: 0;
+    display: block; 
+    z-index: 9;
+    border-radius: 5px;
+  }
+  .Getimage-container{
+    border:2px solid rgba(128, 128, 128, 0.397);
+    border-radius: 5px;
+    height: 200px;
+  }
+  .Getimage-container:hover::before {
+    content: ' ';
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5); 
+    top:0;
+    left: 0;
+    right: 0px;
+    bottom: 0px;
+    display: block;
+    z-index: 9;
+    border-radius: 5px;
+  
+  }
