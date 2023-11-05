@@ -1,8 +1,9 @@
 /* -----------------******************--------------- */
 .gallery-section{
+  background-color: white;
   padding: 0px 20px;
   box-shadow: 0px 1px 10px -7px black;
-  margin-top: 80px;
+  margin-top: 100px;
   border-radius: 5px;
 }
 

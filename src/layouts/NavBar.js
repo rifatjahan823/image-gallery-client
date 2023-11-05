@@ -19,7 +19,7 @@ const NavBar = () => {
 
     }, [])
     return (
-        <div className=''>
+        <div className='navbar'>
             <nav>
             <h1>Image Gallery</h1>
                <div>
