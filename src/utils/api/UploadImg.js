@@ -83,7 +83,7 @@ const UploadImg = () => {
         {/* ----------Product Image---------- */}
         <form className="mb-3">
           <label class="custom-file-upload">
-            <input type="file" multiple style={{ display: "none", }} onChange={handleImageChange} />
+            <input type="file" style={{ display: "none", }} onChange={handleImageChange} />
             <BsImage style={{ cursor: "pointer",fontSize:"22px" }} />
           </label>
 

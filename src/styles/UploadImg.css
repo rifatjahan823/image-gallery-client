@@ -19,8 +19,10 @@ input[type="file"] {
 
 .img-btn{
   background: transparent;
+  font-weight: 600;
   border: 0;
   margin-top: 15px;
+  margin-bottom: 8px;
   cursor: pointer;
 }
 
@@ -32,8 +34,8 @@ input[type="file"] {
 }
 
 .selected-image {
-  max-width: 50px; 
-  max-height: 50px; 
+  max-width: 40px; 
+  max-height: 40px; 
   object-fit: cover; 
   border: 1px solid #ccc; 
   border-radius: 5px; 

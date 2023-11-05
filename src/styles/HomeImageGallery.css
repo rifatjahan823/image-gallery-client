@@ -1,7 +1,6 @@
 /* -----------------******************--------------- */
 .gallery-section{
   background-color: white;
-  padding: 0px 20px;
   box-shadow: 0px 1px 10px -7px black;
   margin-top: 100px;
   border-radius: 5px;
@@ -18,19 +17,23 @@
   padding: 0;
   margin: 0;
   font-size: 22px;
+  margin-left: 20px;
 }
 .gallery-title a{
   color: red;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 600;
   cursor: pointer;
+  margin-right: 20px;
 }
 
 .grid-wrapper {
   display: grid;
   gap: 25px;
   grid-template-columns: repeat(5,1fr);
-padding: 40px 0;}
+ padding: 40px 20px;
+}
+
 .image-container {
   position: relative;
 }
@@ -70,9 +73,6 @@ padding: 40px 0;}
   }
 }
 @media screen and (max-width: 767px) {
-  .gallery-section{
-    padding: 0px 10px;
-  } 
   .image-container img {
     height: 160px;
   }
@@ -87,12 +87,31 @@ padding: 40px 0;}
     grid-template-columns: repeat(2,1fr);
 
   } 
+  .gallery-title h1,h3{
+    font-size: 20px;
+  }
+  .gallery-title a{
+    font-size: 18px;
+  }
+  .gallery-title h1,h3{
+
+    margin-left: 10px;
+  }
+  .gallery-title a{
+
+    margin-right: 10px;
+  }
 }
 @media screen and (max-width: 300px) {
   .grid-wrapper {
     grid-template-columns: repeat(2,1fr);
   } 
   .gallery-title h1, h3 {
-    font-size: 16px;
+    font-size: 15px;
   }
+
+  .gallery-title a{
+    font-size: 14px;
+  }
+  
 }

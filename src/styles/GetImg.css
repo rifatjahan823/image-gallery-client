@@ -1,3 +1,4 @@
+
 .checkbox {
     display: none;
     position: absolute;
@@ -6,7 +7,7 @@
     cursor: pointer;
     z-index: 9999;
   }
-    .hovered .checkbox {
+    .hovered .checkbox{
     display: block;
     cursor: pointer;
     content: ' ';
@@ -20,6 +21,7 @@
     z-index: 9;
     border-radius: 5px;
   }
+ 
   .checkbox-input{
     width: 20px;
     height: 20px;
@@ -44,6 +46,12 @@
     border-radius: 5px;
   
   }
+  .Getimage-container:active::before {
+    background-color: transparent; 
+  
+  }
+  
+
   @media screen and (max-width: 992px) {
     .Getimage-container{
       height: 180px;
@@ -68,8 +76,8 @@
     .checkbox-input{
       width: 20px;
       height: 20px;
-      margin-top: 20px;
-      margin-left: 20px;
+      margin-top: 16px;
+      margin-left: 16px;
     }
   }
   @media screen and (max-width: 350px) {
