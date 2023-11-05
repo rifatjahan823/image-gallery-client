@@ -38,3 +38,14 @@ input[type="file"] {
   border: 1px solid #ccc; 
   border-radius: 5px; 
 }
+
+@media screen and (max-width: 992px) {
+  .drop-zone{
+    height: 180px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .drop-zone{
+    height: 160px;
+  }
+}

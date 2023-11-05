@@ -20,6 +20,12 @@
     z-index: 9;
     border-radius: 5px;
   }
+  .checkbox-input{
+    width: 20px;
+    height: 20px;
+    margin-top: 25px;
+    margin-left: 25px;
+  }
   .Getimage-container{
     border:2px solid rgba(128, 128, 128, 0.397);
     border-radius: 5px;
@@ -37,4 +43,42 @@
     z-index: 9;
     border-radius: 5px;
   
+  }
+  @media screen and (max-width: 992px) {
+    .Getimage-container{
+      height: 180px;
+    }
+    .checkbox-input{
+      width: 18px;
+      height: 18px;
+      margin-top: 20px;
+      margin-left: 20px;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .Getimage-container{
+      height: 160px;
+    }
+    .checkbox-input{
+      width: 18px;
+      height: 18px;
+      margin-top: 12px;
+      margin-left: 12px;
+    }
+  }
+  @media screen and (max-width: 576px) {
+    .checkbox-input{
+      width: 20px;
+      height: 20px;
+      margin-top: 20px;
+      margin-left: 20px;
+    }
+  }
+  @media screen and (max-width: 350px) {
+    .checkbox-input{
+      width: 18px;
+      height: 18px;
+      margin-top: 12px;
+      margin-left: 12px;
+    }
   }

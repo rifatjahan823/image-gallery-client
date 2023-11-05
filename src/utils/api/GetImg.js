@@ -35,7 +35,7 @@ const GetImg = ({img, isSelected, onImageSelection }) => {
     <img src={picture} alt="" />
 
     <div className={`checkbox ${showCheckbox || isSelected ? 'visible' : ''}`} onClick={handleCheckboxClick}>
-      <input type="checkbox" checked={isSelected} readOnly style={{ width: '20px', height: '25px',marginTop:"25px",marginLeft:"20px"}}/>
+      <input type="checkbox" checked={isSelected} readOnly className='checkbox-input' />
     </div>
   </div>
   );
