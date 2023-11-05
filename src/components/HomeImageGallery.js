@@ -11,17 +11,25 @@ const HomeImageGallery = () => {
 
   useEffect(() => {
     setSpiner(true);
+    fetchData();
+    const refreshInterval = setInterval(fetchData, 2000);
+    return () => {
+      clearInterval(refreshInterval); 
+    };
+  }, []);
+
+  const fetchData = () => {
     fetch("https://image-gallery-rou0.onrender.com/image")
       .then((res) => res.json())
       .then((data) => {
         setImages(data.data);
-        setSpiner(false); 
+        setSpiner(false);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
-        setSpiner(false); 
+        setSpiner(false);
       });
-  }, []);
+  };
 
  // Send a DELETE request to your API to delete the selected images using the selectedImageIds array.
   const handleDeleteSelectedImages = () => {
