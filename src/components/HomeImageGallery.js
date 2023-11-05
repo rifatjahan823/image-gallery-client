@@ -32,28 +32,28 @@ const HomeImageGallery = () => {
   };
 
  // Send a DELETE request to your API to delete the selected images using the selectedImageIds array.
-  const handleDeleteSelectedImages = () => {
-    const selectedImageIdsArray = selectedImageIds.map((id) => ({ id }));
-    fetch('https://image-gallery-rou0.onrender.com/delete-selected-images', {
-      method: 'DELETE',
-      body: JSON.stringify({ selectedImageIds: selectedImageIdsArray }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
+ const handleDeleteSelectedImages = () => {
+  const selectedImageIdsArray = selectedImageIds.map((id) => ({ id }));
+  fetch('https://image-gallery-rou0.onrender.com/delete-selected-images', {
+    method: 'DELETE',
+    body: JSON.stringify({ selectedImageIds: selectedImageIdsArray }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        setSelectedImageIds([]); 
+        fetchData();
+      } else {
+        console.error('Failed to delete selected images.');
+      }
     })
-      .then((response) => {
-        if (response.ok) {
-          fetch("https://image-gallery-rou0.onrender.com/image")
-          .then((res) => res.json())
-          .then((data) => setImages(data.data));
-        } else {
-          console.error('Failed to delete selected images.');
-        }
-      })
-      .catch((error) => {
-        console.error('Error deleting selected images:', error);
-      });
-  };
+    .catch((error) => {
+      console.error('Error deleting selected images:', error);
+    });
+};
+
 
   const handleImageSelection = (imageId) => {
     if (selectedImageIds.includes(imageId)) {
@@ -87,10 +87,10 @@ const HomeImageGallery = () => {
    <div className="gallery-section">
      <div className="gallery-title">
       {
-      selectedImageIds.length>0 && <h3>  <input type="checkbox" checked  style={{ width: '16px', height: '16px'}}/> {selectedImageIds.length} File Selected</h3>
+      selectedImageIds.length>=1 && <h3>  <input type="checkbox" checked  style={{ width: '16px', height: '16px'}}/> {selectedImageIds.length} File Selected</h3>
       }
            {
-      selectedImageIds.length>0?
+      selectedImageIds.length>=1?
       <a onClick={handleDeleteSelectedImages}>Delete files</a>:
       <h1>Gallery</h1>
      }
